@@ -1,0 +1,40 @@
+# Description: The Cinnamon Settings daemon.
+# URL: http://cinnamon.linuxmint.com/
+# Maintainer: https://github.com/linuxmint
+# Packager: fanch at orange do fr thierryn1 at hispeed dot ch
+# Depends on: cinnamon-desktop libibus libcanberra-pulse librsvg nss pulseaudio-alsa upower libnotify libgnomekbd libwacom libgudev
+
+name=cinnamon-settings-daemon
+version=2.6.3
+release=1
+source=()
+_gitroot=https://github.com/linuxmint/cinnamon-settings-daemon.git
+_gitname=cinnamon-settings-daemon
+
+build() {
+	cd $SRC
+	
+	if [[ -d $_gitname ]]; then
+		cd $_gitname && git pull origin
+	else
+		git clone $_gitroot $_gitname
+	fi
+
+
+	rm -rf $SRC/$_gitname-build
+	git clone $SRC/$_gitname $SRC/$_gitname-build
+	cd $SRC/$_gitname-build
+	
+	   ./autogen.sh --prefix=/usr \
+					--sysconfdir=/etc \
+					--localstatedir=/var \
+					--libexecdir=/usr/lib/$name \
+					--disable-static \
+					--enable-systemd
+
+  #https://bugzilla.gnome.org/show_bug.cgi?id=656231
+  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+    make 
+	
+    make DESTDIR=$PKG install
+}
