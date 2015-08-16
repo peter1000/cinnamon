@@ -7,25 +7,11 @@
 name=cinnamon-translations
 version=2.6.3
 release=1
-source=()
-_gitroot=https://github.com/linuxmint/cinnamon-translations.git
-_gitname=cinnamon-translations
+source=(https://github.com/linuxmint/$name/archive/$version.tar.gz)
 
 build() {
-	cd $SRC
-	
-	if [[ -d $_gitname ]]; then
-		cd $_gitname && git pull origin
-	else
-		git clone $_gitroot $_gitname
-	fi
-
-
-	rm -rf $SRC/$_gitname-build
-	git clone $SRC/$_gitname $SRC/$_gitname-build
-	cd $SRC/$_gitname-build
-	
-    make 
+	cd $name-$version
+	make
 	install -m 0755 -d ${PKG}/usr/share/locale/ 
 	cp -Rp usr/share/locale/* ${PKG}/usr/share/locale/
 }
