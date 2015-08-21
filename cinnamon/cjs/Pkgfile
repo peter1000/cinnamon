@@ -4,6 +4,9 @@
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
 # Depends on: js gnome-common cairo gobject-introspection js dbus-glib
 
+# Need to cleanup to make shure the sources are not reused as they are all names almost the same
+PKGMK_KEEP_SOURCES="no"
+
 
 name=cjs
 version=2.6.2
