@@ -2,29 +2,18 @@
 # URL: http://cinnamon.linuxmint.com/
 # Maintainer: https://github.com/linuxmint
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
-# Depends on: cinnamon-settings-daemon cinnamon-translations cinnamon-menus libgnomekbd network-manager-applet
+# Depends on: cinnamon-settings-daemon cinnamon-translations cinnamon-menus libgnomekbd networkmanager
+
+# Need to cleanup to make shure the sources are not reused as they are all names almost the same
+PKGMK_KEEP_SOURCES="no"
 
 name=cinnamon-control-center
 version=2.6.0
 release=1
-source=()
-_gitroot=https://github.com/linuxmint/cinnamon-control-center.git
-_gitname=cinnamon-control-center
+source=(https://github.com/linuxmint/$name/archive/$version.tar.gz)
 
 build() {
-	cd $SRC
-	
-	if [[ -d $_gitname ]]; then
-		cd $_gitname && git pull origin
-	else
-		git clone $_gitroot $_gitname
-	fi
-
-
-	rm -rf $SRC/$_gitname-build
-	git clone $SRC/$_gitname $SRC/$_gitname-build
-	cd $SRC/$_gitname-build
-
+	cd $name-$version
 	./autogen.sh --prefix=/usr \
 	--sysconfdir=/etc \
       --localstatedir=/var \
