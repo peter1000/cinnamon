@@ -1,0 +1,19 @@
+# Description: JavaScript interpreter and libraries
+# URL: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Releases/24
+# Packager: tnut at nutyx dot org
+# Depends on: nspr
+
+name=js
+version=24.2.0
+release=1
+
+source=(http://ftp.mozilla.org/pub/mozilla.org/js/mozjs-$version.tar.bz2)
+
+build() {
+unset CPPFLAGS
+cd mozjs-$version/js/src
+SHELL=/bin/sh ./configure --prefix=/usr --with-system-nspr --enable-system-ffi \
+--enable-readline --enable-threadsafe
+make
+make DESTDIR=$PKG install
+}
