@@ -2,36 +2,20 @@
 # URL: http://cinnamon.linuxmint.com/
 # Maintainer: https://github.com/linuxmint
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
-# Depends on: cairo gobject-introspection-runtime js dbus-glib
+# Depends on: js gnome-common cairo gobject-introspection js dbus-glib
 
 
 name=cjs
 version=2.6.2
 release=1
-source=()
-_gitroot=https://github.com/linuxmint/cjs.git
-_gitname=cjs
+source=(https://github.com/linuxmint/$name/archive/$version.tar.gz)
 
 build() {
-	cd $SRC
-	
-	if [[ -d $_gitname ]]; then
-		cd $_gitname && git pull origin
-	else
-		git clone $_gitroot $_gitname
-	fi
-
-
-	rm -rf $SRC/$_gitname-build
-	git clone $SRC/$_gitname $SRC/$_gitname-build
-	cd $SRC/$_gitname-build
-	
-  # Python2 fix
-  sed -i 's|#! /usr/bin/env python|#! /usr/bin/env python2|' \
-  		verbump.py'
-
-       ./autogen.sh --prefix=/usr --disable-static --libexecdir=/usr/lib
-    make 
-	
-    make DESTDIR=$PKG install
+	cd $name-$version	
+	./autogen.sh \
+	--prefix=/usr \
+	--disable-static \
+	--libexecdir=/usr/lib
+	make
+	make DESTDIR=$PKG install
 }
