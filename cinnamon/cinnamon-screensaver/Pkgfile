@@ -4,40 +4,24 @@
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
 # Depends on: cinnamon-desktop cinnamon-translations dbus-glib libgnomekbd python-gobject2 webkit
 
+# Need to cleanup to make shure the sources are not reused as they are all names almost the same
+PKGMK_KEEP_SOURCES="no"
 
 name=cinnamon-screensaver
 version=2.6.4
 release=1
-source=(etc/pam.d/cinnamon-screensaver)
-_gitroot=https://github.com/linuxmint/cinnamon-screensaver.git
-_gitname=cinnamon-screensaver
+source=(https://github.com/linuxmint/$name/archive/$version.tar.gz
+	cinnamon-screensaver.pam)
 
 build() {
-	cd $SRC
-	
-	if [[ -d $_gitname ]]; then
-		cd $_gitname && git pull origin
-	else
-		git clone $_gitroot $_gitname
-	fi
-
-
-	rm -rf $SRC/$_gitname-build
-	git clone $SRC/$_gitname $SRC/$_gitname-build
-	cd $SRC/$_gitname-build
-
-	# Python2 fix
-	sed -i 's@^#!.*python$@#!/usr/bin/python2@' data/screensavers/*/main
-	
-      ./autogen.sh 	--prefix=/usr \
-					--sysconfdir=/etc \
-					--libexecdir=/usr/lib/cinnamon-$name \
-					--localstatedir=/var \
-					--with-mit-ext \
-					--with-systemd
-    
-    make 
-	
+	cd $name-$version	
+      ./autogen.sh --prefix=/usr \
+	--sysconfdir=/etc \
+	--libexecdir=/usr/lib/cinnamon-$name \
+	--localstatedir=/var \
+	--with-mit-ext \
+	--without-systemd
+    make
     make DESTDIR=$PKG install
 install -Dm644 ../cinnamon-screensaver.pam  $PKG/etc/pam.d/cinnamon-screensaver
 }
