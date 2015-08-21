@@ -2,36 +2,22 @@
 # URL: http://cinnamon.linuxmint.com/
 # Maintainer: https://github.com/linuxmint
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
-# Depends on: accountsservice caribou cinnamon-settings-daemon cinnamon-session cinnamon-translations cjs clutter-gtk gnome-backgrounds gconf gnome-themes-standard gstreamer libgnome-keyring libkeybinder3 librsvg networkmanager muffin python-cairo python-dbus python-pillow python-pam python-pexpect python-pyinotify python-lxml webkit+ cinnamon-control-center cinnamon-screensaver cinnamon-menus libgnomekbd network-manager-applet nemo polkit-gnome
+# Depends on: ca-certificates accountsservice cinnamon-settings-daemon cinnamon-session cinnamon-translations cjs gconf gstreamer libgnome-keyring librsvg networkmanager muffin python-cairo python-lxml webkit cinnamon-control-center cinnamon-screensaver cinnamon-menus libgnomekbd polkit-gnome
+
+# Need to cleanup to make shure the sources are not reused as they are all names almost the same
+PKGMK_KEEP_SOURCES="no"
 
 
 name=cinnamon
 version=2.6.13
 release=1
-release=1
-source=(set_wheel.patch
+source=(https://github.com/linuxmint/$name/archive/$version.tar.gz
+	set_wheel.patch
         gnome-3.14.patch
         default-theme.patch)
-_gitroot=https://github.com/linuxmint/Cinnamon.git
-_gitname=Cinnamon
 
 build() {
-	cd $SRC
-	
-	if [[ -d $_gitname ]]; then
-		cd $_gitname && git pull origin
-	else
-		git clone $_gitroot $_gitname
-	fi
-
-
-	rm -rf $SRC/$_gitname-build
-	git clone $SRC/$_gitname $SRC/$_gitname-build
-	cd $SRC/$_gitname-build
-	
-  # Python2 fix
-  sed -i 's:/usr/bin/python :/usr/bin/python2 :' files/usr/bin/cinnamon-menu-editor
-  find -type f | xargs sed -i 's@^#!.*python$@#!/usr/bin/python2@'
+	cd Cinnamon-$version
 
   # Use wheel group instread of sudo
   patch -Np1 -i ../set_wheel.patch
@@ -65,13 +51,13 @@ build() {
     files/usr/lib/cinnamon-settings/cinnamon-settings.py
     
       ./autogen.sh --prefix=/usr \
+	--with-ca-certificates=/etc/ssl \
                --sysconfdir=/etc \
                --libexecdir=/usr/lib/cinnamon \
                --localstatedir=/var \
                --disable-static \
                --disable-schemas-compile \
-               --enable-compile-warnings=yes \
-               --with-session-tracking=systemd
+               --enable-compile-warnings=yes
     make 
 	
     make DESTDIR=$PKG install
