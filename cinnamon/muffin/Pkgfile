@@ -4,6 +4,8 @@
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
 # Depends on: cogl clutter gnome-doc-utils zenity gobject-introspection cinnamon-desktop libcanberra xorg-libsm startup-notification dconf
 
+# Need to cleanup to make shure the sources are not reused as they are all names almost the same
+PKGMK_KEEP_SOURCES="no"
 
 name=muffin
 version=2.6.1
