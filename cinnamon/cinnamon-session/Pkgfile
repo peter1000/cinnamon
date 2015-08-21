@@ -4,27 +4,17 @@
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
 # Depends on: dbus-glib cinnamon-desktop xorg-libsm libcanberra
 
+# Need to cleanup to make shure the sources are not reused as they are all names almost the same
+PKGMK_KEEP_SOURCES="no"
+
+
 name=cinnamon-session
 version=2.6.3
 release=1
-source=(timeout.patch)
-_gitroot=https://github.com/linuxmint/cinnamon-session.git
-_gitname=cinnamon-session
-
+source=(https://github.com/linuxmint/$name/archive/$version.tar.gz
+	timeout.patch)	
 build() {
-	cd $SRC
-	
-	if [[ -d $_gitname ]]; then
-		cd $_gitname && git pull origin
-	else
-		git clone $_gitroot $_gitname
-	fi
-
-
-	rm -rf $SRC/$_gitname-build
-	git clone $SRC/$_gitname $SRC/$_gitname-build
-	cd $SRC/$_gitname-build
-	
+	cd $name-$version	
 	 patch -Np1 -i ../timeout.patch
 	 
   ./autogen.sh  --prefix=/usr \
