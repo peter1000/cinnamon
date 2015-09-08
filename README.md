@@ -83,7 +83,7 @@ It will explain you what's a collection, a git, a port, the tools around 'cards'
 
  then you are ready to compile the 'cinnamon-extra' collection
 
-    # cd /root/cinnamon-extra
+    # cd /root/cinnamon
     # bash scripts/cinnamon-extra -s
     # bash scripts/cinnamon-extra -a 
 
