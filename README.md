@@ -21,35 +21,35 @@ It will explain you what's a collection, a git, a port, the tools around 'cards'
 
     $ su -
     # echo "LFS=/mnt/lfs
-    DEPOT=/houaphan" > /etc/install-houaphan.conf
+    DEPOT=/8.0" > /etc/install-houaphan.conf
     # mkdir -p /etc/install-houaphan.conf.d
     # cat > /etc/install-houaphan.conf.d/cards.conf << "EOF"
-    dir /houaphan/cinnamon
-    dir /houaphan/gui
-    dir /houaphan/cli
-    dir /houaphan/base|http://downloads.nutyx.org
-    dir /houaphan/base-extra|http://downloads.nutyx.org
-    base /houaphan/base
-    base /houaphan/base-extra
+    dir /8.0/cinnamon
+    dir /8.0/gui
+    dir /8.0/cli
+    dir /8.0/base|http://downloads.nutyx.org
+    dir /8.0/base-extra|http://downloads.nutyx.org
+    base /8.0/base
+    base /8.0/base-extra
     logdir /var/log/pkgbuild
     EOF
 
-#### 3. Install a base NuTyX system (assume below the user is 'tnut' so adapt to yours)
+#### 3. Install a base NuTyX system (assume below the user is 'lfs' so adapt to yours)
 
-    # bash /home/tnut/houaphan/scripts/install-houaphan
+    # bash /home/lfs/houaphan/scripts/install-houaphan
 
 #### 4. In your chroot Make the directory where the git copy will comes
 
     # mkdir -v /mnt/lfs/root/{houaphan,cinnamon}
 
-#### 5. Mount your git project (assume below the user is 'tnut' so adapt to yours)
+#### 5. Mount your git project (assume below the user is 'lfs' so adapt to yours)
 
-    # mount -o bind /home/tnut/cinnamon /mnt/lfs/root/cinnamon
-    # mount -o bind /home/tnut/houaphan /mnt/lfs/root/houaphan
+    # mount -o bind /home/lfs/cinnamon /mnt/lfs/root/cinnamon
+    # mount -o bind /home/lfs/houaphan /mnt/lfs/root/houaphan
 
-#### 6. Enter now in your chroot
+#### 6. Enter now in your chroot (assume below the user is 'lfs' so adapt to yours)
 
-    # bash /home/tnut/houaphan/scripts/install-houaphan -ec
+    # bash /home/lfs/houaphan/scripts/install-houaphan -ec
 
 #### 7. Prepare the first execution of the build script
 
