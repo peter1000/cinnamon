@@ -6,11 +6,10 @@
 run=(shared-mime-info)
 name=nemo
 version=2.6.7
-release=1
+release=2
 source=(https://github.com/linuxmint/$name/archive/$version.tar.gz)
 
 build() {
-# unset MAKEFLAGS
 cd $name-$version
 
 # Python2 fix
@@ -21,15 +20,14 @@ sed -i 's/^Name\(.*\)=.*/Name\1=Nemo/' data/nemo.desktop.in.in
   
 ./autogen.sh --prefix=/usr \
 --sysconfdir=/etc \
---localstatedir=/var --disable-static \
+--localstatedir=/var \
+--disable-static \
 --libexecdir=/usr/lib/nemo \
 --disable-update-mimedb \
 --disable-packagekit \
 --disable-tracker \
 --disable-gtk-doc-html \
 --disable-schemas-compile
-
 make
-
 make DESTDIR=$PKG install
 }
