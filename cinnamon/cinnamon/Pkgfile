@@ -2,7 +2,7 @@
 # URL: http://cinnamon.linuxmint.com/
 # Maintainer: https://github.com/linuxmint
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
-# Depends on: ca-certificates accountsservice cinnamon-settings-daemon cinnamon-session cinnamon-translations cjs gconf gstreamer libgnome-keyring librsvg networkmanager muffin python-cairo python-lxml webkit2gtk3 cinnamon-control-center cinnamon-screensaver cinnamon-menus libgnomekbd polkit-gnome
+# Depends on: vim ca-certificates accountsservice cinnamon-settings-daemon cinnamon-session cinnamon-translations cjs gconf gstreamer libgnome-keyring librsvg networkmanager muffin python-cairo python-lxml webkit2gtk3 cinnamon-control-center cinnamon-screensaver cinnamon-menus libgnomekbd polkit-gnome
 
 # Need to cleanup to make shure the sources are not reused as they are all names almost the same
 PKGMK_KEEP_SOURCES="no"
@@ -10,7 +10,7 @@ PKGMK_KEEP_SOURCES="no"
 
 name=cinnamon
 version=2.6.13
-release=2
+release=3
 source=(https://github.com/linuxmint/$name/archive/$version.tar.gz
 	set_wheel.patch
         gnome-3.14.patch
