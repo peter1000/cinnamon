@@ -2,7 +2,7 @@
 # URL: http://cinnamon.linuxmint.com/
 # Maintainer: https://github.com/linuxmint
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
-# Depends on: glib gnome-common
+# Depends on: glib gnome-common gobject-introspection intltool python2
 
 # Need to cleanup to make shure the sources are not reused as they are all names almost the same
 PKGMK_KEEP_SOURCES="no"

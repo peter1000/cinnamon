@@ -9,7 +9,7 @@ PKGMK_KEEP_SOURCES="no"
 
 name=cinnamon-settings-daemon
 version=2.6.3
-release=1
+release=2
 source=(https://github.com/linuxmint/$name/archive/$version.tar.gz)
 build() {
 	cd $name-$version
@@ -17,11 +17,8 @@ build() {
 					--sysconfdir=/etc \
 					--localstatedir=/var \
 					--libexecdir=/usr/lib/$name \
-					--disable-static
-
-  #https://bugzilla.gnome.org/show_bug.cgi?id=656231
-  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
-    make 
-	
-    make DESTDIR=$PKG install
+					--disable-static \
+  				    --disable-systemd
+      make 
+      make DESTDIR=$PKG install
 }

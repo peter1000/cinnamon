@@ -10,19 +10,20 @@ PKGMK_KEEP_SOURCES="no"
 
 name=cinnamon-session
 version=2.6.3
-release=1
+release=2
 source=(https://github.com/linuxmint/$name/archive/$version.tar.gz
-	timeout.patch)	
+	timeout.patch)
+		
 build() {
 	cd $name-$version	
 	 patch -Np1 -i ../timeout.patch
 	 
-  ./autogen.sh  --prefix=/usr \
+   ./autogen.sh --prefix=/usr \
 				--sysconfdir=/etc \
 				--localstatedir=/var \
 				--libexecdir=/usr/lib/cinnamon-session \
 				--disable-schemas-compile \
-				--enable-systemd \
+				--disable-systemd \
 				--disable-gconf
     make 
 	

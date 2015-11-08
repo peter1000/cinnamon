@@ -9,16 +9,17 @@ PKGMK_KEEP_SOURCES="no"
 
 name=cinnamon-control-center
 version=2.6.0
-release=1
-source=(https://github.com/linuxmint/$name/archive/$version.tar.gz)
+release=3
+source=(https://github.com/linuxmint/$name/archive/$version.tar.gz timezone_8.5{,_dim}.png timezone_9{,_dim}.png)
 
 build() {
 	cd $name-$version
+	cp $SRC/*.png  panels/datetime/data/
 	./autogen.sh --prefix=/usr \
 	--sysconfdir=/etc \
       --localstatedir=/var \
       --disable-static \
-      --enable-systemd \
+      --disable-systemd \
       --disable-update-mimedb
 
   #https://bugzilla.gnome.org/show_bug.cgi?id=656229

@@ -2,7 +2,7 @@
 # URL: http://cinnamon.linuxmint.com/
 # Maintainer: https://github.com/linuxmint
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
-# Depends on: js gnome-common cairo gobject-introspection js dbus-glib
+# Depends on: gnome-common cairo gobject-introspection js2 dbus-glib
 
 # Need to cleanup to make shure the sources are not reused as they are all names almost the same
 PKGMK_KEEP_SOURCES="no"
@@ -10,11 +10,14 @@ PKGMK_KEEP_SOURCES="no"
 
 name=cjs
 version=2.6.2
-release=1
+release=3
 source=(https://github.com/linuxmint/$name/archive/$version.tar.gz)
 
 build() {
-	cd $name-$version	
+	cd $name-$version
+	# Python2 fix
+    sed -i 's|#! /usr/bin/env python|#! /usr/bin/env python2|' \
+  		verbump.py	
 	./autogen.sh \
 	--prefix=/usr \
 	--disable-static \
