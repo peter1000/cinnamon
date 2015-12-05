@@ -8,13 +8,15 @@
 PKGMK_KEEP_SOURCES="no"
 
 name=cinnamon-screensaver
-version=2.6.4
+version=2.8.0
 release=1
 source=(https://github.com/linuxmint/$name/archive/$version.tar.gz
 	cinnamon-screensaver.pam)
 
 build() {
-	cd $name-$version	
+	cd $name-$version
+	# Python2 fix
+  sed -i 's@^#!.*python$@#!/usr/bin/python2@' data/screensavers/*/main	
       ./autogen.sh --prefix=/usr \
 	--sysconfdir=/etc \
 	--libexecdir=/usr/lib/cinnamon-$name \
