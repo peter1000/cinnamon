@@ -8,7 +8,7 @@
 PKGMK_KEEP_SOURCES="no"
 
 name=cinnamon-menus
-version=2.6.0
+version=2.8.0
 release=1
 source=(https://github.com/linuxmint/$name/archive/$version.tar.gz)
 
