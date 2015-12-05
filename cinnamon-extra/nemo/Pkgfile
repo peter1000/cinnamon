@@ -5,8 +5,8 @@
 # Depends on: python python-polib python-gobject gobject-introspection gtk-doc libexif gvfs dconf desktop-file-utils exempi cinnamon-desktop libnotify libxml2 cinnamon-translations shared-mime-info
 run=(shared-mime-info)
 name=nemo
-version=2.6.7
-release=2
+version=2.8.5
+release=1
 source=(https://github.com/linuxmint/$name/archive/$version.tar.gz)
 
 build() {
