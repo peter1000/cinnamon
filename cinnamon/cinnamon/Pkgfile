@@ -13,6 +13,7 @@ cinnamon-menus cinnamon-screensaver
 cinnamon-session cinnamon-settings-daemon
 cinnamon-translations cjs muffin)
 
+description="Provides advanced innovative features and a traditional user experience."
 name=cinnamon
 version=2.8.5
 release=1
