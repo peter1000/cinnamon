@@ -6,7 +6,7 @@
 
 
 name=cinnamon-desktop
-version=2.8.0
+version=2.8.1
 release=1
 source=(https://github.com/linuxmint/${name}/archive/${version}.tar.gz
 	config.patch)
