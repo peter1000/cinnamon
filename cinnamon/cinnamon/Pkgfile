@@ -15,7 +15,7 @@ cinnamon-translations cjs muffin)
 
 description="Provides advanced innovative features and a traditional user experience."
 name=cinnamon
-version=2.8.5
+version=2.8.7
 release=1
 source=(https://github.com/linuxmint/$name/archive/$version.tar.gz
 	set_wheel.patch
