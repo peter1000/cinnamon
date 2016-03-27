@@ -4,6 +4,9 @@
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
 # Depends on: cinnamon-desktop
 
+# Need to cleanup to make shure the sources are not reused as they are all names almost the same
+PKGMK_KEEP_SOURCES="no"
+
 name=cinnamon-translations
 version=2.8.3
 release=1
