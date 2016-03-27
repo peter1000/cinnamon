@@ -3,6 +3,10 @@
 # Maintainer: https://github.com/linuxmint
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
 # Depends on: python python-polib python-gobject gobject-introspection gtk-doc libexif gvfs dconf desktop-file-utils exempi cinnamon-desktop libnotify libxml2 cinnamon-translations shared-mime-info
+
+# Need to cleanup to make shure the sources are not reused as they are all names almost the same
+PKGMK_KEEP_SOURCES="no"
+
 run=(shared-mime-info)
 name=nemo
 version=2.8.7
