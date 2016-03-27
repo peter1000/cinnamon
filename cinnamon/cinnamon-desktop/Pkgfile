@@ -4,6 +4,8 @@
 # Packager: fanch at orange do fr thierryn1 at hispeed dot ch
 # Depends on: xorg-xkeyboard-config gnome-common cjs gtk3 xorg-libxkbfile python glib
 
+# Need to cleanup to make shure the sources are not reused as they are all names almost the same
+PKGMK_KEEP_SOURCES="no"
 
 name=cinnamon-desktop
 version=2.8.1
